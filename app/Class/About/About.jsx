@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Router,Route,hashHistory, Link} from 'react-router';
 var About = React.createClass({
     render(){
         return (
