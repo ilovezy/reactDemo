@@ -20,12 +20,13 @@ module.exports = {
                 presets: ['es2015', 'react'],
                 exclude: /node_modules/
             },
-            { test: /\.css$/, loader: "style!css" }
+            { test: /\.css$/, loader: "style!css" },
+            { test: /\.scss$/, loader: 'style!css!sass' }
         ]
     },
 
     resolve:{
-        extensions:['','.js','.json', '.jsx']
+        extensions:['','.js','.json', '.jsx', '.scss']
     },
 
     plugins: [

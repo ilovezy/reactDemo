@@ -1,4 +1,5 @@
 import React from 'react'
+require('./Todo.scss')
 
 export default class Todo extends React.Component {
     constructor(props){
@@ -7,7 +8,7 @@ export default class Todo extends React.Component {
             currentTodo: '',
             todos: [{
                 text: 'add some todo',
-                done: true
+                done: false
             }]
         }
     }
@@ -22,10 +23,11 @@ export default class Todo extends React.Component {
             return (
                 <li className="list-group-item"
                     key={item+index}
+                    data-index={index}
                     data-item={item.text}
                     onClick={me.changeItemState.bind(me)}>
-                    <span className="badge" data-item={item.text} onClick={me.deleteThisTodo.bind(me)}>x</span>
-                    <span className={item.done ? 'text-active' : ''}>{item.text}</span>
+                    <span className="badge" data-index={index} data-item={item.text} onClick={me.deleteThisTodo.bind(me)}>x</span>
+                    <span className={item.done ? 'text-deleted text-danger' : ''}>{item.text}</span>
                 </li>
             )
         })
@@ -44,21 +46,19 @@ export default class Todo extends React.Component {
     }
 
     deleteThisTodo(e){
+        e.stopPropagation()
         let me = this
-        let itemText = e.currentTarget.getAttribute('data-item')
-        let todos = _.remove(me.state.todos, function (todo) {
-            return todo.text != itemText
-        })
-        me.setState({todos: todos})
+        let index = e.currentTarget.getAttribute('data-index')
+        me.state.todos.splice(index, 1);
+        me.setState({todos: me.state.todos})
     }
 
-    // TODO change item status
     changeItemState(e){
         let me = this
-        let itemText = e.currentTarget.getAttribute('data-item')
-        let thisTodo = _.find(me.state.todos, function (todo) {
-            return todo.text == itemText
-        })
+        let index = e.currentTarget.getAttribute('data-index')
+        let todo = me.state.todos[index]
+        todo.done = !todo.done
+        me.setState({ todos: me.state.todos })
     }
 
     clearAllTodos(){
