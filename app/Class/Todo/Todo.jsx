@@ -1,4 +1,14 @@
 import React from 'react'
+import {List, ListItem} from 'material-ui/List';
+import ContentInbox from 'material-ui/svg-icons/content/inbox';
+import ActionGrade from 'material-ui/svg-icons/action/grade';
+import ContentSend from 'material-ui/svg-icons/content/send';
+import ContentDrafts from 'material-ui/svg-icons/content/drafts';
+// import Divider from 'material-ui/Divider';
+import ActionInfo from 'material-ui/svg-icons/action/info';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 require('./Todo.scss')
 
 export default class Todo extends React.Component {
@@ -18,17 +28,26 @@ export default class Todo extends React.Component {
         if(!todos.length){
             return null
         }
-
+        // {/*
+        //  <li className="list-group-item"
+        //  key={item+index}
+        //  data-index={index}
+        //  data-item={item.text}
+        //  onClick={me.changeItemState.bind(me)}>
+        //  <span className="badge" data-index={index} data-item={item.text} onClick={me.deleteThisTodo.bind(me)}>x</span>
+        //  <span className={item.done ? 'text-deleted text-danger' : ''}>{item.text}</span>
+        //  </li>
+        //  */}
         let todosDOM = todos.map((item, index)=>{
             return (
-                <li className="list-group-item"
-                    key={item+index}
-                    data-index={index}
-                    data-item={item.text}
-                    onClick={me.changeItemState.bind(me)}>
-                    <span className="badge" data-index={index} data-item={item.text} onClick={me.deleteThisTodo.bind(me)}>x</span>
-                    <span className={item.done ? 'text-deleted text-danger' : ''}>{item.text}</span>
-                </li>
+                <ListItem primaryText={item.text}
+                          key={item+index}
+                          data-index={index}
+                          data-item={item.text}
+                          rightIconButton={<ActionInfo />}
+                          onClick={me.changeItemState.bind(me)}>
+                </ListItem>
+
             )
         })
         return todosDOM
@@ -65,6 +84,15 @@ export default class Todo extends React.Component {
         this.setState({todos: []})
     }
 
+    clearFinishedTodo(){
+        let me = this
+        let todos = me.state.todos
+        todos = _.filter(todos, function (item) {
+            return !item.done
+        })
+        me.setState({todos: todos})
+    }
+
     render(){
         let me = this;
         let listGroupItems = me.renderListGroupItems(me.state.todos);
@@ -72,18 +100,21 @@ export default class Todo extends React.Component {
         return (
             <div className="container">
                 <h1 className="text-center">Todo</h1>
-                <p className="alert alert-info">this is a todo app</p>
 
                 <input className="form-control"
                        type="text"
                        placeholder="add some todo?"
                        onKeyDown={me.addTodo.bind(me)}/>
-                <ul className="list-group">
-                    {listGroupItems}
-                </ul>
+                <MuiThemeProvider>
+                    <List>
+                        {listGroupItems}
+                    </List>
+                </MuiThemeProvider>
 
                 <button className="btn btn-danger pull-right"
                     onClick={me.clearAllTodos.bind(me)}>clear</button>
+                <button className="btn btn-info pull-right"
+                        onClick={me.clearFinishedTodo.bind(me)}>clear finished</button>
             </div>
         )
     }

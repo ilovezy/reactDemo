@@ -1,14 +1,11 @@
 import React from 'react';
-import {Router,Route,hashHistory, Link} from 'react-router';
-var About = React.createClass({
-    render(){
-        return (
-            <div className="container">
-                <h1>About</h1>
-                <p>wow!!! this is written by cchotaru </p>
-            </div>
-        )
-    }
-})
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
 
-module.exports = About
+const Main = () => (
+    <MuiThemeProvider >
+        <AppBar title="hello this si about me" />
+    </MuiThemeProvider>
+);
+
+export default Main;
