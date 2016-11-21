@@ -4,6 +4,7 @@ import TestAutoComplete from './TestAutoComplete'
 import TestBadge from './TestBadge'
 import TestBottomNav from './TestBottomNav'
 import TestFlatButtons from './TestFlatButtons'
+import TestChip from './TestChip'
 
 export default class TestMaterial extends React.Component {
     render(){
@@ -13,6 +14,10 @@ export default class TestMaterial extends React.Component {
                 <TestAutoComplete />
                 <TestBadge />
                 <TestFlatButtons />
+                <TestChip />
+
+                <br/>
+                <br/>
                 <TestBottomNav />
             </div>
         )

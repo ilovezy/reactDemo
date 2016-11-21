@@ -13,7 +13,7 @@ injectTapEventPlugin();
 var App = React.createClass({
     render(){
         return (
-            <MuiThemeProvider>
+            <MuiThemeProvider >
                 <Router history={hashHistory}>
                     <Route path="/" component={Main}/>
                     <Route path="/About" component={About}/>
