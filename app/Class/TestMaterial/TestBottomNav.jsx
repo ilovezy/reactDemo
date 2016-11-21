@@ -7,8 +7,6 @@ const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
 const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
 const nearbyIcon = <IconLocationOn />;
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 /**
  * A simple example of `BottomNavigation`, with three labels and icons
  * provided. The selected `BottomNavigationItem` is determined by application
@@ -23,27 +21,25 @@ class BottomNavigationExampleSimple extends Component {
 
     render() {
         return (
-            <MuiThemeProvider>
-                <Paper zDepth={1}>
-                        <BottomNavigation selectedIndex={this.state.selectedIndex}>
-                            <BottomNavigationItem
-                                label="Recents"
-                                icon={recentsIcon}
-                                onTouchTap={() => this.select(0)}
-                            />
-                            <BottomNavigationItem
-                                label="Favorites"
-                                icon={favoritesIcon}
-                                onTouchTap={() => this.select(1)}
-                            />
-                            <BottomNavigationItem
-                                label="Nearby"
-                                icon={nearbyIcon}
-                                onTouchTap={() => this.select(2)}
-                            />
-                        </BottomNavigation>
-                </Paper>
-            </MuiThemeProvider>
+            <Paper zDepth={1}>
+                <BottomNavigation selectedIndex={this.state.selectedIndex}>
+                    <BottomNavigationItem
+                        label="Recents"
+                        icon={recentsIcon}
+                        onTouchTap={() => this.select(0)}
+                    />
+                    <BottomNavigationItem
+                        label="Favorites"
+                        icon={favoritesIcon}
+                        onTouchTap={() => this.select(1)}
+                    />
+                    <BottomNavigationItem
+                        label="Nearby"
+                        icon={nearbyIcon}
+                        onTouchTap={() => this.select(2)}
+                    />
+                </BottomNavigation>
+            </Paper>
         );
     }
 }

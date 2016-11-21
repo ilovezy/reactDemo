@@ -6,7 +6,6 @@ import ContentSend from 'material-ui/svg-icons/content/send';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 // import Divider from 'material-ui/Divider';
 import ActionInfo from 'material-ui/svg-icons/action/info';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 require('./Todo.scss')
@@ -105,11 +104,10 @@ export default class Todo extends React.Component {
                        type="text"
                        placeholder="add some todo?"
                        onKeyDown={me.addTodo.bind(me)}/>
-                <MuiThemeProvider>
-                    <List>
-                        {listGroupItems}
-                    </List>
-                </MuiThemeProvider>
+
+                <List>
+                    {listGroupItems}
+                </List>
 
                 <button className="btn btn-danger pull-right"
                     onClick={me.clearAllTodos.bind(me)}>clear</button>

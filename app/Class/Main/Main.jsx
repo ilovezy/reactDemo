@@ -14,14 +14,9 @@ var Main = React.createClass({
     render(){
         return (
             <div>
-                <MuiThemeProvider>
-                    <AppBar title="To test react material"
-                            iconClassNameRight="muidocs-icon-navigation-expand-more" />
-                </MuiThemeProvider>
-
-                <MuiThemeProvider>
-                    <h1 className="text-center">Main</h1>
-                </MuiThemeProvider>
+                <AppBar title="To test react material"
+                        iconClassNameRight="muidocs-icon-navigation-expand-more" />
+                <h1 className="text-center">Main</h1>
 
                 <div className="list-group">
                     <Link className="list-group-item" to="/About">About</Link>
@@ -30,14 +25,12 @@ var Main = React.createClass({
                     <Link className="list-group-item" to="/TestMaterial">Test Material</Link>
                 </div>
 
-                <MuiThemeProvider>
-                    <List>
-                        <ListItem primaryText="About" leftIcon={<ContentInbox />} />
-                        <ListItem primaryText="Menu" leftIcon={<ActionGrade />} />
-                        <ListItem primaryText="Todo" leftIcon={<ContentSend />} />
-                        <ListItem primaryText="TestMaterial" leftIcon={<ContentDrafts />} />
-                    </List>
-                </MuiThemeProvider>
+                <List>
+                    <ListItem primaryText="About" leftIcon={<ContentInbox />} />
+                    <ListItem primaryText="Menu" leftIcon={<ActionGrade />} />
+                    <ListItem primaryText="Todo" leftIcon={<ContentSend />} />
+                    <ListItem primaryText="TestMaterial" leftIcon={<ContentDrafts />} />
+                </List>
             </div>
         )
     }
