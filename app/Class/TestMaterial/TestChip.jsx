@@ -3,6 +3,7 @@ import Avatar from 'material-ui/Avatar'
 import Chip from 'material-ui/Chip'
 import FontIcon from 'material-ui/FontIcon'
 import SvgIconFace from 'material-ui/svg-icons/action/face'
+import Paper from 'material-ui/Paper';
 
 export default class TestChip extends React.Component {
     constructor(props) {
@@ -55,9 +56,9 @@ export default class TestChip extends React.Component {
         let me = this
         let chipDOM = me.renderChip(me.state.chipData)
         return (
-            <div style={me.styles.wrapper}>
+            <Paper style={me.styles.wrapper} rounded={false} zDepth={1}>
                 {chipDOM}
-            </div>
+            </Paper>
         );
     }
 }
