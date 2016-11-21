@@ -18,18 +18,22 @@ var Main = React.createClass({
                         iconClassNameRight="muidocs-icon-navigation-expand-more" />
                 <h1 className="text-center">Main</h1>
 
-                <div className="list-group">
-                    <Link className="list-group-item" to="/About">About</Link>
-                    <Link className="list-group-item" to="/Menu">Menu</Link>
-                    <Link className="list-group-item" to="/Todo">Todo</Link>
-                    <Link className="list-group-item" to="/TestMaterial">Test Material</Link>
-                </div>
-
                 <List>
+                  <Link className="list-group-item" to="/About">
                     <ListItem primaryText="About" leftIcon={<ContentInbox />} />
+                  </Link>
+
+                  <Link className="list-group-item" to="/Menu">
                     <ListItem primaryText="Menu" leftIcon={<ActionGrade />} />
+                  </Link>
+
+                  <Link className="list-group-item" to="/Todo">
                     <ListItem primaryText="Todo" leftIcon={<ContentSend />} />
+                  </Link>
+
+                  <Link className="list-group-item" to="/TestMaterial">
                     <ListItem primaryText="TestMaterial" leftIcon={<ContentDrafts />} />
+                  </Link>
                 </List>
             </div>
         )

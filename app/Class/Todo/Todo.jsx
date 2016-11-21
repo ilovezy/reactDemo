@@ -4,10 +4,12 @@ import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
-// import Divider from 'material-ui/Divider';
-import ActionInfo from 'material-ui/svg-icons/action/info';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import Divider from 'material-ui/Divider';
+import ActionClose from 'material-ui/svg-icons/navigation/close';
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
+import Dialog from 'material-ui/Dialog';
+
 require('./Todo.scss')
 
 export default class Todo extends React.Component {
@@ -17,8 +19,10 @@ export default class Todo extends React.Component {
             currentTodo: '',
             todos: [{
                 text: 'add some todo',
-                done: false
-            }]
+                done: false,
+                finishedTime: ''
+            }],
+            dialogOpen: false
         }
     }
 
@@ -27,26 +31,26 @@ export default class Todo extends React.Component {
         if(!todos.length){
             return null
         }
-        // {/*
-        //  <li className="list-group-item"
-        //  key={item+index}
-        //  data-index={index}
-        //  data-item={item.text}
-        //  onClick={me.changeItemState.bind(me)}>
-        //  <span className="badge" data-index={index} data-item={item.text} onClick={me.deleteThisTodo.bind(me)}>x</span>
-        //  <span className={item.done ? 'text-deleted text-danger' : ''}>{item.text}</span>
-        //  </li>
-        //  */}
+
         let todosDOM = todos.map((item, index)=>{
             return (
+              <div key={'div_'+item+index}>
                 <ListItem primaryText={item.text}
-                          key={item+index}
+                          key={'listItem_' + item+index}
                           data-index={index}
                           data-item={item.text}
-                          rightIconButton={<ActionInfo />}
+                          className={item.done ? 'text-deleted text-danger' : ''}
+                          secondaryText={item.finishedTime}
+                          rightIcon={
+                              <ActionClose
+                                  key={'close_' + item+index}
+                                  data-index={index}
+                                  data-item={item.text}
+                                  onClick={me.deleteThisTodo.bind(me)} />}
                           onClick={me.changeItemState.bind(me)}>
                 </ListItem>
-
+                <Divider key={'divider_' + item+index} />
+              </div>
             )
         })
         return todosDOM
@@ -58,7 +62,7 @@ export default class Todo extends React.Component {
         if(e.keyCode == 13 && currentTarget.value != ''){
             let todos = me.state.todos
             todos.push({text: currentTarget.value})
-            me.setState({todos: todos, done: false})
+            me.setState({todos: todos, done: false, finishedTime: ''})
             currentTarget.value = ''
         }
     }
@@ -76,11 +80,14 @@ export default class Todo extends React.Component {
         let index = e.currentTarget.getAttribute('data-index')
         let todo = me.state.todos[index]
         todo.done = !todo.done
+        todo.finishedTime = 'finished at: ' + new Date().toDateString()
         me.setState({ todos: me.state.todos })
     }
 
     clearAllTodos(){
-        this.setState({todos: []})
+        let me = this
+        me.setState({todos: []})
+        me.closeDialog()
     }
 
     clearFinishedTodo(){
@@ -92,27 +99,57 @@ export default class Todo extends React.Component {
         me.setState({todos: todos})
     }
 
+    openDialog(){
+        this.setState({dialogOpen: true});
+    }
+
+    closeDialog(){
+        this.setState({dialogOpen: false});
+    }
+
     render(){
         let me = this;
         let listGroupItems = me.renderListGroupItems(me.state.todos);
 
-        return (
-            <div className="container">
-                <h1 className="text-center">Todo</h1>
+        const actions = [
+            <FlatButton
+              label="Cancel"
+              primary={true}
+              onTouchTap={me.closeDialog.bind(me)} />,
+            <FlatButton
+              label="Submit"
+              primary={true}
+              keyboardFocused={true}
+              onTouchTap={me.clearAllTodos.bind(me)} />,
+        ];
 
-                <input className="form-control"
-                       type="text"
-                       placeholder="add some todo?"
-                       onKeyDown={me.addTodo.bind(me)}/>
+        return (
+            <div>
+                <h1>Todo</h1>
+
+                <TextField hintText="add some todo?"
+                           floatingLabelText="add some todo?"
+                           onKeyDown={me.addTodo.bind(me)}/>
 
                 <List>
                     {listGroupItems}
                 </List>
 
-                <button className="btn btn-danger pull-right"
-                    onClick={me.clearAllTodos.bind(me)}>clear</button>
-                <button className="btn btn-info pull-right"
-                        onClick={me.clearFinishedTodo.bind(me)}>clear finished</button>
+                <FlatButton
+                    secondary
+                    onClick={me.openDialog.bind(me)}>clear</FlatButton>
+                <FlatButton
+                    primary
+                    onClick={me.clearFinishedTodo.bind(me)}>clear finished</FlatButton>
+
+                <Dialog
+                  title="Dialog With Actions"
+                  actions={actions}
+                  modal={false}
+                  open={me.state.dialogOpen}
+                  onRequestClose={me.closeDialog.bind(me)}>
+                    fuck all of these ??????????
+                </Dialog>
             </div>
         )
     }
