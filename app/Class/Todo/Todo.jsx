@@ -9,7 +9,7 @@ import ActionClose from 'material-ui/svg-icons/navigation/close';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
-
+var classNames = require('classnames');
 require('./Todo.scss')
 
 export default class Todo extends React.Component {
@@ -39,7 +39,7 @@ export default class Todo extends React.Component {
                           key={'listItem_' + item+index}
                           data-index={index}
                           data-item={item.text}
-                          className={item.done ? 'text-deleted text-danger' : ''}
+                          className={classNames({'text-deleted text-danger': item.done})}
                           secondaryText={item.finishedTime}
                           rightIcon={
                               <ActionClose
@@ -80,7 +80,7 @@ export default class Todo extends React.Component {
         let index = e.currentTarget.getAttribute('data-index')
         let todo = me.state.todos[index]
         todo.done = !todo.done
-        todo.finishedTime = 'finished at: ' + new Date().toDateString()
+        todo.finishedTime = todo.finishedTime ? '' : 'finished at: ' + new Date().toDateString()
         me.setState({ todos: me.state.todos })
     }
 
