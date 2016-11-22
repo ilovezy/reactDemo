@@ -10,6 +10,8 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 var classNames = require('classnames');
+import Header from '../../components/Header'
+
 require('./Todo.scss')
 
 export default class Todo extends React.Component {
@@ -125,6 +127,7 @@ export default class Todo extends React.Component {
 
         return (
             <div>
+                <Header title="todo" />
                 <h1>Todo</h1>
 
                 <TextField hintText="add some todo?"

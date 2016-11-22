@@ -7,25 +7,25 @@ import TestFlatButtons from './TestFlatButtons'
 import TestChip from './TestChip'
 import TestDialog from './TestDialog'
 import Divider from 'material-ui/Divider';
-
+import Header from '../../components/Header'
 export default class TestMaterial extends React.Component {
     render(){
         return (
             <div>
-                <AppBar title="to test material ui" />
-                <TestAutoComplete />
-                <TestBadge />
-                <TestFlatButtons />
-                <TestChip />
+              <Header title="to test material ui" />
+              <TestAutoComplete />
+              <TestBadge />
+              <TestFlatButtons />
+              <TestChip />
 
-                <h1>test dialog</h1>
-                <TestDialog />
+              <h1>test dialog</h1>
+              <TestDialog />
 
 
 
-                <br/>
-                <br/>
-                <TestBottomNav />
+              <br/>
+              <br/>
+              <TestBottomNav />
             </div>
         )
     }
