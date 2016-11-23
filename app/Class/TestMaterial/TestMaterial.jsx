@@ -21,8 +21,6 @@ export default class TestMaterial extends React.Component {
               <h1>test dialog</h1>
               <TestDialog />
 
-
-
               <br/>
               <br/>
               <TestBottomNav />

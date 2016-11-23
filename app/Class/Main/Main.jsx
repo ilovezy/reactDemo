@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import {List, ListItem} from 'material-ui/List';
+import Paper from 'material-ui/Paper';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'material-ui/FlatButton';
@@ -12,18 +13,36 @@ import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import Header from '../../components/Header'
+import { UPDATE_NEW_DATE } from '../../constants/Constants'
+import NotificationListener from '../../actions/NotificationListener'
 
 
 export default class Main extends React.Component {
   constructor(props){
     super(props)
+    this.state = {
+      pickedDate: ''
+    }
   }
 
+  componentDidMount(){
+    NotificationListener.bind(UPDATE_NEW_DATE, this.updateNewDate.bind(this));
+  }
+
+  componentWillUnmount(){
+    console.log('main unmounted')
+    NotificationListener.unbind(UPDATE_NEW_DATE);
+  }
+
+  updateNewDate(text){
+    this.setState({pickedDate: text})
+    console.log('!update New Date now 333')
+  }
   render(){
     let me = this
     return (
       <div>
-        <Header title="main" noBack />
+        <Header title={me.state.pickedDate} noBack />
 
         <List>
           <Link to="/About">
@@ -46,6 +65,10 @@ export default class Main extends React.Component {
             <ListItem primaryText="DatePickerContainer" leftIcon={<ContentDrafts />} />
           </Link>
         </List>
+
+        <Paper>
+          {this.props.children}
+        </Paper>
       </div>
     )
   }

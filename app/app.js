@@ -17,12 +17,13 @@ var App = React.createClass({
         return (
             <MuiThemeProvider >
                 <Router history={hashHistory}>
-                    <Route path="/" component={Main}/>
+                    <Route path="/" component={Main}>
+                        <Route path="/DatePickerContainer" component={DatePickerContainer}/>
+                    </Route>
                     <Route path="/About" component={About}/>
                     <Route path="/Menu" component={Menu}/>
                     <Route path="/Todo" component={Todo}/>
                     <Route path="/TestMaterial" component={TestMaterial}/>
-                    <Route path="/DatePickerContainer" component={DatePickerContainer}/>
                 </Router>
             </MuiThemeProvider>
         )
