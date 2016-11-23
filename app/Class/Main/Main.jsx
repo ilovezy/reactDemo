@@ -13,13 +13,17 @@ import ContentSend from 'material-ui/svg-icons/content/send';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import Header from '../../components/Header'
 
+
 export default class Main extends React.Component {
+  constructor(props){
+    super(props)
+  }
+
   render(){
     let me = this
     return (
       <div>
         <Header title="main" noBack />
-        <h1 className="text-center">Main</h1>
 
         <List>
           <Link to="/About">
@@ -36,6 +40,10 @@ export default class Main extends React.Component {
 
           <Link to="/TestMaterial">
             <ListItem primaryText="TestMaterial" leftIcon={<ContentDrafts />} />
+          </Link>
+
+          <Link to="/DatePickerContainer">
+            <ListItem primaryText="DatePickerContainer" leftIcon={<ContentDrafts />} />
           </Link>
         </List>
       </div>

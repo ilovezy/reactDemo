@@ -7,6 +7,8 @@ import About from './Class/About/About';
 import Menu from './Class/Menu/Menu';
 import Todo from './Class/Todo/Todo';
 import TestMaterial from './Class/TestMaterial/TestMaterial';
+import DatePickerContainer from './Class/DatePicker/DatePickerContainer'
+
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
@@ -20,6 +22,7 @@ var App = React.createClass({
                     <Route path="/Menu" component={Menu}/>
                     <Route path="/Todo" component={Todo}/>
                     <Route path="/TestMaterial" component={TestMaterial}/>
+                    <Route path="/DatePickerContainer" component={DatePickerContainer}/>
                 </Router>
             </MuiThemeProvider>
         )
