@@ -1,10 +1,6 @@
 import React from 'react';
-import Header from '../../components/Header'
-
 import 'react-date-picker/index.css'
-import {DateField, Calendar} from 'react-date-picker'
-
-import { UPDATE_NEW_DATE } from '../../constants/Constants'
+import {Calendar} from 'react-date-picker'
 import Notification from '../../actions/Notification'
 
 export default class DatePicker extends React.Component {

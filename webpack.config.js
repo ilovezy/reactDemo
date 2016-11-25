@@ -1,5 +1,7 @@
+import hello from "";
 var webpack = require('webpack');
 var path = require('path');
+
 
 module.exports = {
     devtool: 'source-map',
@@ -21,10 +23,14 @@ module.exports = {
                 presets: ['es2015', 'react'],
                 exclude: /node_modules/
             },
-            { test: /\.css$/, loader: "style!css" },
-            { test: /\.scss$/, loader: 'style!css!sass' }
+            { test: /\.css$/, loader: "style!css!postcss" },
+            { test: /\.scss$/, loader: 'style!css!sass!postcss' }
         ]
     },
+
+    postcss: [
+        require('autoprefixer')//调用autoprefixer插件
+    ],
 
     resolve:{
         extensions:['','.js','.json', '.jsx', '.scss']
@@ -36,6 +42,8 @@ module.exports = {
                 warnings: false
             }
         }]),
-        new webpack.NoErrorsPlugin()
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.NoErrorsPlugin(),
+        new webpack.BannerPlugin("Copyright cchotaru.")
     ]
 }

@@ -9,7 +9,6 @@ let listener = new NotificationListener();
 AppDispatcher.register((payload) => {
   console.log('accept event ' + payload.eventName);
   listener.trigger(payload.eventName || '', payload.data || null);
-  return true;
 });
 
 export default listener;

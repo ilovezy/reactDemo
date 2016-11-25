@@ -1,5 +1,4 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
 import Header from '../../components/Header'
 const Main = () => (
   <div>
