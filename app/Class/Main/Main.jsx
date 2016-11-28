@@ -1,12 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
 import {List, ListItem} from 'material-ui/List';
 import Paper from 'material-ui/Paper';
-import IconButton from 'material-ui/IconButton';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import FlatButton from 'material-ui/FlatButton';
 // icons
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
@@ -61,8 +56,16 @@ export default class Main extends React.Component {
             <ListItem primaryText="TestMaterial" leftIcon={<ContentDrafts />} />
           </Link>
 
+          <Link to="/TestAntDesign">
+            <ListItem primaryText="TestAntDesign" leftIcon={<ContentDrafts />} />
+          </Link>
+
           <Link to="/DatePickerContainer">
             <ListItem primaryText="DatePickerContainer" leftIcon={<ContentDrafts />} />
+          </Link>
+
+          <Link to="/TestDraft">
+            <ListItem primaryText="TestDraft" leftIcon={<ContentDrafts />} />
           </Link>
         </List>
 
