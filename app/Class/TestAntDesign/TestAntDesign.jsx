@@ -1,9 +1,8 @@
 import React from 'react';
 import Header from '../../components/Header'
-// import { DatePicker } from 'antd';
 import { Row, Col } from 'antd'
 import { Button } from 'antd'
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 import './TestAntDesign.scss'
 import { BackTop, Steps, Tabs, message } from 'antd'
 

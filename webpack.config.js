@@ -22,7 +22,8 @@ module.exports = {
                 exclude: /node_modules/
             },
             { test: /\.css$/, loader: "style!css!postcss" },
-            { test: /\.scss$/, loader: 'style!css!sass!postcss' }
+            { test: /\.scss$/, loader: 'style!css!sass!postcss' },
+            { test: /\.less$/, loader: 'style!css!less!postcss' }
         ]
     },
 

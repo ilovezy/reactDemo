@@ -67,6 +67,10 @@ export default class Main extends React.Component {
           <Link to="/TestDraft">
             <ListItem primaryText="TestDraft" leftIcon={<ContentDrafts />} />
           </Link>
+
+          <Link to="/Tween">
+            <ListItem primaryText="Tween" leftIcon={<ContentDrafts />} />
+          </Link>
         </List>
 
         <Paper>
